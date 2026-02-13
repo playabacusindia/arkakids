@@ -101,39 +101,24 @@ populateSelect();
 // form box start
 
 function msgBox() {
-    document.querySelector("#tele-chatbox-unique").classList.toggle("active")
+    document.querySelector("#tele-chatbox-unique").classList.toggle("active");
 }
-var captchaNumber;
-var canvas = document.getElementById("captchaCanvas");
-var ctx = canvas.getContext("2d");
 
-function createCaptcha() {
-    captchaNumber = Math.floor(1000 + Math.random() * 9000);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#ffffff"; // Set fill color to white
-    ctx.fillRect(0, 0, canvas.width, canvas.height); // Fill the canvas with white
-    ctx.font = "30px cursive";
-    ctx.fillStyle = "rgb(223, 42, 23)" // Set text color to black
-    ctx.fillText(captchaNumber, 10, 30);
-
-    for (var i = 0; i < canvas.width; i++) {
-        for (var j = 0; j < canvas.height; j++) {
-            if (Math.random() > 0.6) { // Increase the noise probability
-                var data = ctx.getImageData(i, j, 1, 1).data;
-                var r = data[0];
-                var g = data[1];
-                var b = data[2];
-                var a = data[3];
-                var noise = Math.floor(Math.random() * 500) - 400;
-                ctx.fillStyle = "rgba(" + (r + noise) + "," + (g + noise) + "," + (b + noise) + "," + a + ")";
-                ctx.fillRect(i, j, 1, 1);
-            }
+// Inquiry Chips selection logic
+document.querySelectorAll('.inquiry-chip').forEach(chip => {
+    chip.addEventListener('click', function () {
+        // Remove selected class from all chips
+        document.querySelectorAll('.inquiry-chip').forEach(c => c.classList.remove('selected'));
+        // Add selected class to clicked chip
+        this.classList.add('selected');
+        // Check the radio input inside
+        const radio = this.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
         }
-    }
-}
-createCaptcha(); // Initial captcha creation
+    });
+});
 
-// Call the sendUserDataToServer function when the page loads
 window.onload = function () {
     sendUserDataToServer();
     if (localStorage.getItem("customer-name") && localStorage.getItem("customer-number")) {
@@ -141,65 +126,38 @@ window.onload = function () {
         document.querySelector("#tele-phone").value = localStorage.getItem("customer-number");
     }
 };
-// Validate captcha on form submit
-function validateCaptcha() {
-    var userInput = document.getElementById("captcha").value;
-    if (userInput != captchaNumber) {
-        alert("Captcha is incorrect!");
-        return false;
-    }
-    return true;
-}
-function sendUserDataToServer() {
 
+function sendUserDataToServer() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // Parse the JSON response
             var locationInfo = JSON.parse(xhr.responseText);
             console.log(locationInfo);
             let ipAddress = locationInfo.ip;
             let city = locationInfo.city;
             let region = locationInfo.region;
-
-            // Get user's host
             let host = window.location.href;
-
-            // Get user's screen resolution
             let screenWidth = window.screen.width;
             let screenHeight = window.screen.height;
             let screenResolution = screenWidth + "x" + screenHeight;
-
             saveUserDataLocally(ipAddress, host, screenResolution, city, region);
-
         } else if (xhr.readyState == 4 && xhr.status != 200) {
-
             let ipAddress = "unknown";
             let city = "unknown";
             let region = "unknown";
-
-            // Get user's host
             let host = window.location.href;
-
-            // Get user's screen resolution
             let screenWidth = window.screen.width;
             let screenHeight = window.screen.height;
             let screenResolution = screenWidth + "x" + screenHeight;
-
             saveUserDataLocally(ipAddress, host, screenResolution, city, region);
         }
     };
-
     xhr.open('GET', `https://arkakids.com/form/tele-abacus/get-location.php`, true);
     xhr.send();
-
-
 }
 
 function saveUserDataLocally(ipAddress, host, screenResolution, city, region) {
-    // Check if localStorage is supported by the browser
     if (typeof (Storage) !== "undefined") {
-        // Store data in localStorage
         localStorage.setItem("ipAddress", ipAddress);
         localStorage.setItem("host", host);
         localStorage.setItem("screenResolution", screenResolution);
@@ -211,12 +169,9 @@ function saveUserDataLocally(ipAddress, host, screenResolution, city, region) {
 }
 
 function saveCustomerDataLocally(customerName, customerNumber) {
-    // Check if localStorage is supported by the browser
     if (typeof (Storage) !== "undefined") {
-        // Store data in localStorage
         localStorage.setItem("customer-name", customerName);
         localStorage.setItem("customer-number", customerNumber);
-
     } else {
         console.error("localStorage is not supported");
     }
@@ -224,102 +179,82 @@ function saveCustomerDataLocally(customerName, customerNumber) {
 
 function limitLetters(textarea, maxLetters) {
     const currentText = textarea.value;
-
     if (currentText.length > maxLetters) {
         textarea.value = currentText.substring(0, maxLetters);
         alert("You can only enter up to " + maxLetters + " characters.");
     }
-
-    // Safely update character count
     const counter = document.getElementById("wordCountMsg");
     if (counter) {
         counter.textContent = `${textarea.value.length} / ${maxLetters} letters`;
     }
 }
 
-
-
 document.querySelector('#sendBtn').addEventListener('click', function (e) {
     e.preventDefault();
-    if (validateCaptcha()) {
+    var photoUrl = 'https://placehold.co/600x400/white/black/png';
+    let selectedValue = document.querySelector('.inquiry-chip input[name="inquiry_type"]:checked')?.value;
+    let name = document.querySelector("#tele-name").value.trim();
+    let frontPhoneElement = document.querySelector(".val");
+    let frontPhone = frontPhoneElement?.dataset?.value?.trim() || '';
+    let phone = document.querySelector("#tele-phone").value.trim();
+    let email = document.querySelector("#tele-email").value.trim();
+    let location = document.querySelector("#tele-location").value.trim();
+    let msg = document.querySelector('#message').value.trim();
 
-        // var photoUrl = document.getElementById('photo_url').value;
-        var photoUrl = 'https://placehold.co/600x400/white/black/png';
-        let selectedValue = document.querySelector('input[name="inquiry_type"]:checked')?.value;
-        console.log(selectedValue);
-        let name = document.querySelector("#tele-name").value.trim();
-        let frontPhoneElement = document.querySelector(".val");
-        let frontPhone = frontPhoneElement?.dataset?.value?.trim() || '';
-        let phone = document.querySelector("#tele-phone").value.trim();
-        let email = document.querySelector("#tele-email").value.trim();
-        let msg = document.querySelector('#message').value.trim();
-        let ipAddress = localStorage.getItem("ipAddress");
-        let host = localStorage.getItem("host");
-        let screenResolution = localStorage.getItem("screenResolution");
-        let city = localStorage.getItem("city");
-        let region = localStorage.getItem("region");
-        let message = `Hi, We hope this message finds you well. You've got a new inquiry from:
+    let ipAddress = localStorage.getItem("ipAddress");
+    let host = localStorage.getItem("host");
+    let screenResolution = localStorage.getItem("screenResolution");
+    let city = localStorage.getItem("city");
+    let region = localStorage.getItem("region");
 
-        
-    From,
+    let message = `Hi, You've got a new inquiry from Arka Kids:
 
     Type: ${selectedValue}
     Name: ${name}
-    Phone: ${frontPhone}${phone}
     Email: ${email}
-    Message :-
-    ${msg}
+    Location: ${location}
+    Phone: ${frontPhone}${phone}
+    Message: ${msg}
 
-
-    More Details:
-
+    --- Browser Information ---
     City: ${city}
     Region: ${region}
     IP Address: ${ipAddress}
     From URL: ${host}
+    Screen: ${screenResolution}`;
 
-    Screen Resolution: ${screenResolution}
-
-    Please reach out to them at your earliest convenience.
-    Best, Team IPA`;
-
-
-        if (name === "" || phone === "" || msg === "" || email === "" || selectedValue === undefined) {
-            alert("Please fill in all fields and select an inquiry type.");
-        } else if (!/^\d{10,}$/.test(phone)) {
-            alert("Please enter a valid number.");
+    if (name === "" || phone === "" || msg === "" || email === "" || location === "" || selectedValue === undefined) {
+        alert("Please fill in all fields and select an inquiry type.");
+    } else if (!/^\d{10,}$/.test(phone)) {
+        alert("Please enter a valid number.");
+    } else {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
         } else {
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address.");
-            } else {
+            document.querySelector('#sendBtn').classList.add("active");
+            document.querySelector('#sendBtn').disabled = true;
 
-                // telegram chat box start
-                fetch('https://arkakids.com/form/tele-abacus/tele-chatbox.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: 'photo_url=' + encodeURIComponent(photoUrl) + '&message=' + encodeURIComponent(message),
-                }).then(function (response) {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text(); // Parse response as JSON
-                }).then(function (data) {
-                    console.log(data);
-                    // alert('Message sent successfully');
-                    window.location.href = "https://arkakids.com/";
-                }).catch(function (error) {
-                    console.error('There was a problem with your fetch operation:', error);
-                    // alert('Failed to send message');
-                });
-                // telegram chat box end
-
-
-                document.querySelector('#sendBtn').classList.add("active");
-
-            }
+            fetch('https://arkakids.com/form/tele-abacus/tele-chatbox.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'photo_url=' + encodeURIComponent(photoUrl) + '&message=' + encodeURIComponent(message),
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            }).then(function (data) {
+                alert('Enquiry sent successfully!');
+                window.location.href = "https://arkakids.com/";
+            }).catch(function (error) {
+                console.error('There was a problem with your fetch operation:', error);
+                alert('Failed to send enquiry. Please try again.');
+                document.querySelector('#sendBtn').classList.remove("active");
+                document.querySelector('#sendBtn').disabled = false;
+            });
         }
     }
 });
