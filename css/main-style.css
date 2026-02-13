@@ -802,6 +802,57 @@ footer .f-logo {
     color: var(--black-clr);
     transition: .5s;
 }
+
 .branch-box a:hover {
     color: var(--primary-clr);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 35px;
+    /* Moved up as per user request */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--secondary-clr);
+    color: white;
+    border: none;
+    outline: none;
+    display: none;
+    /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-clr);
+    transform: scale(1.1);
+}
+
+.back-to-top:active {
+    transform: scale(0.9);
+}
+
+.back-to-top.show {
+    display: flex;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
