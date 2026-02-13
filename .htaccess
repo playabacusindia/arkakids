@@ -7,10 +7,18 @@
 # Prevent directory listing
 Options -Indexes
 
-# Block access to any PHP files (optional but recommended for security)
+# Block access to PHP files except the mailers
 <FilesMatch "\.php$">
   Order allow,deny
   Deny from all
+</FilesMatch>
+
+<Files "send-mail.php">
+  Allow from all
+</Files>
+
+<FilesMatch "^(tele-chatbox|get-location)\.php$">
+  Allow from all
 </FilesMatch>
 
 # Optional: Set long cache headers for static files (improves performance)
