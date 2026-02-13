@@ -284,20 +284,24 @@
     justify-content: flex-start;
     align-items: center;
     padding: 10px 15px;
+    position: relative;
 }
 
 #tele-chatbox-unique .tele-chatbox-header img {
-    height: 100%;
+    max-height: 35px;
+    width: auto;
 }
 
 #tele-chatbox-unique .tele-chatbox-header #tele-close {
-    margin-left: auto;
+    position: absolute;
+    top: 8px;
+    right: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     color: rgb(223, 42, 23);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
 }
 
 #tele-chatbox-unique .tele-chatbox-body {
@@ -357,9 +361,11 @@
     background-color: red;
 }
 
-#tele-chatbox-unique #sendBtn span,
-#tele-chatbox-unique #sendBtn i {
-    color: white !important;
+#tele-chatbox-unique #sendBtn,
+#tele-chatbox-unique #sendBtn *,
+#tele-chatbox-unique #sendBtn i,
+#tele-chatbox-unique #sendBtn i::before {
+    color: #ffffff !important;
 }
 
 #tele-chatbox-unique #sendBtn.active {
@@ -540,6 +546,56 @@
         padding: 0.4rem 0.75rem;
         font-size: 0.75rem;
     }
+}
+
+/* Extracted Styles from index.html */
+.shake-animation {
+    animation: shake 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    40%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-2px, -2px);
+    }
+
+    20% {
+        transform: translate(2px, 2px);
+    }
+
+    30% {
+        transform: translate(-2px, -2px);
+    }
+}
+
+.img-rounded-10 {
+    border-radius: 10px;
+}
+
+.country-select-label {
+    color: black !important;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.word-count-msg {
+    color: gray;
+    font-size: 12px;
+}
+
+/* Final Fix for White Rocket Icon */
+#tele-chatbox-unique #sendBtn i.fa-paper-plane {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
 }
 
 /* country select end */

@@ -13,7 +13,7 @@
         content="nursery near me, preschool near me, kindergarten schools near me, montessori training near me, daycare and preschool near me, playschools near me, junior kindergarten, best nursery near me">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://arkakids.com/">
+    <link rel="canonical" href="./">
 
     <!-- Robots -->
     <meta name="robots" content="index, follow">
@@ -26,7 +26,7 @@
     <meta property="og:title" content="Best Preschool, Nursery & Montessori Training in India | Arka Kids">
     <meta property="og:description"
         content="Discover top-rated nursery, preschool, and montessori training with Arka Kids. Safe, nurturing, and fun learning environments for young children.">
-    <meta property="og:url" content="https://arkakids.com/">
+    <meta property="og:url" content="./">
     <meta property="og:site_name" content="Arka Kids">
     <meta property="og:image" content="images/arka-kids-thumbnail.jpg">
 
@@ -42,14 +42,14 @@
     <meta name="publisher" content="Arka Kids">
 
     <!-- Alternate Language Link -->
-    <link rel="alternate" hreflang="en" href="https://arkakids.com/">
+    <link rel="alternate" hreflang="en" href="./">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://arkakids.com/images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/svg+xml" href="https://arkakids.com/images/favicon/favicon.svg">
+    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://arkakids.com/images/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="https://arkakids.com/images/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
 
     <!-- Organization Structured Data -->
     <script type="application/ld+json">
@@ -96,9 +96,9 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <!-- form -->
-    <link rel="stylesheet" href="https://arkakids.com/form/biz-msg-box/style.css">
+    <link rel="stylesheet" href="form/biz-msg-box/style.css">
     <!-- custom css -->
-    <link rel="stylesheet" href="https://arkakids.com/css/main-style.css">
+    <link rel="stylesheet" href="css/main-style.css">
 
 </head>
 
@@ -199,7 +199,7 @@
             </div>
         </nav>
     </header>
-    <main class="w-100" style="overflow: hidden;">
+    <main class="w-100 overflow-hidden">
         <!-- banner -->
         <section id="banner" class="container-fluid mt-5">
             <div class="row mt-5">
@@ -980,38 +980,7 @@
         <div class=" bottom-call-tel telegram-container btn-animation btn-animation2">
             <span>Quick Msg</span>
 
-            <style>
-                .shake-animation {
-                    animation: shake 3s ease-in-out infinite;
-                }
 
-                @keyframes shake {
-                    0% {
-                        transform: translate(0, 0);
-                    }
-
-                    10% {
-                        transform: translate(-2px, -2px);
-                    }
-
-                    20% {
-                        transform: translate(2px, 2px);
-                    }
-
-                    30% {
-                        transform: translate(-2px, -2px);
-                    }
-
-
-                    40% {
-                        transform: translate(0, 0);
-                    }
-
-                    100% {
-                        transform: translate(0, 0);
-                    }
-                }
-            </style>
             <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24"
                 class="shake-animation">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -1059,8 +1028,7 @@
     <!-- form -->
     <div id="tele-chatbox-unique">
         <div class="tele-chatbox-header ">
-            <img style="border-radius: 10px;" class="h-50" src="https://www.playabacusindia.com/images/logo.jpg"
-                alt="IPA">
+            <img class="h-50 img-rounded-10" src="https://www.playabacusindia.com/images/logo.jpg" alt="IPA">
             <div onclick="msgBox()" id="tele-close"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                     viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -1084,11 +1052,9 @@
             <input id="tele-email" class="form-control" placeholder="Mail" required type="email">
             <input id="tele-location" class="form-control" placeholder="Location" required type="text">
 
-            <div class="d-flex flex-column flex-md-row align-items-center gap-2 w-100">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-start gap-2 w-100">
                 <div class="w-100 w-md-auto" name="country-codes" id="country-select">
-                    <label
-                        style="color: black !important; border: 1px solid #ddd; border-radius: 10px; padding: 0.75rem; width: 100%;"
-                        for="searchInput" onclick="toggleCon()" class="val" data-value="+91">
+                    <label class="val country-select-label" data-value="+91" for="searchInput" onclick="toggleCon()">
                         <img src="https://flagcdn.com/w320/in.png" alt="">
                         +91
                     </label>
@@ -1097,17 +1063,17 @@
                         <input type="text" id="searchInput" placeholder="Search country code..." />
                     </div>
                 </div>
-                <input id="tele-phone" class="form-control w-100" placeholder="Phone Number" required type="text">
+                <input id="tele-phone" class="form-control flex-grow-1" placeholder="Phone Number" required type="text">
             </div>
 
             <div class="">
                 <textarea placeholder="Message" class="form-control" id="message" name="message" rows="3" required
                     oninput="limitLetters(this, 100)"></textarea>
-                <div id="wordCountMsg" style="color: gray; font-size: 12px;">0 / 100 letters</div>
+                <div id="wordCountMsg" class="word-count-msg">0 / 100 letters</div>
             </div>
 
-            <button id="sendBtn" role="button"><span>SEND ENQUIRY</span> <i
-                    class="fa-solid fa-paper-plane"></i></button>
+            <button id="sendBtn" role="button"><span>SEND ENQUIRY</span> <i class="fa-solid fa-paper-plane"
+                    style="color: white !important;"></i></button>
         </div>
     </div>
 
@@ -1116,9 +1082,9 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- form -->
-    <script src="https://arkakids.com/form/biz-msg-box/script.js"></script>
+    <script src="form/biz-msg-box/script.js"></script>
     <!-- custom js -->
-    <script src="https://arkakids.com/js/main-script.js"></script>
+    <script src="js/main-script.js"></script>
 </body>
 
 </html>
