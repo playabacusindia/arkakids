@@ -22,6 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $to_email = "contact@arkakids.com";
 $from_email = "contact@arkakids.com";
 
+// Get Data from Frontend
+$message_body = $_POST['message'] ?? '';
+
+if (empty($message_body)) {
+    // Fallback if data is sent differently
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $message_body = $data['message'] ?? '';
+}
+
+if (empty($message_body)) {
+    echo json_encode(['success' => false, 'message' => 'Empty message content.']);
+    exit;
+}
+
 // 1. Send Email using mail()
 // Note: On cPanel, mail() usually uses the local SMTP server configured with your credentials.
 $subject = "New Inquiry from Arka Kids Website";
