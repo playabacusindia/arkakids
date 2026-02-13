@@ -235,20 +235,24 @@ document.querySelector('#sendBtn').addEventListener('click', function (e) {
             document.querySelector('#sendBtn').classList.add("active");
             document.querySelector('#sendBtn').disabled = true;
 
-            fetch('https://arkakids.com/form/tele-abacus/tele-chatbox.php', {
+            fetch('form/send-mail.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'photo_url=' + encodeURIComponent(photoUrl) + '&message=' + encodeURIComponent(message),
+                body: 'message=' + encodeURIComponent(message),
             }).then(function (response) {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text();
+                return response.json();
             }).then(function (data) {
-                alert('Enquiry sent successfully!');
-                window.location.href = "https://arkakids.com/";
+                if (data.success) {
+                    alert('Enquiry sent successfully!');
+                    window.location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
             }).catch(function (error) {
                 console.error('There was a problem with your fetch operation:', error);
                 alert('Failed to send enquiry. Please try again.');
