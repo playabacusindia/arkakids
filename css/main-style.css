@@ -792,6 +792,30 @@ footer .f-logo {
     h2 {
         font-size: 30px !important;
     }
+
+    /* Offcanvas responsiveness fix */
+    .offcanvas-body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding-top: 2rem !important;
+        padding-left: 2.5rem !important;
+        overflow-y: auto;
+    }
+
+    .offcanvas-body .navbar-nav {
+        justify-content: flex-start !important;
+        flex-grow: 0 !important;
+        gap: 1.5rem !important;
+        margin-bottom: 2rem;
+        align-items: flex-start !important;
+    }
+
+    .offcanvas-body .theme-btn {
+        margin-top: 0 !important;
+        margin-bottom: 2rem;
+    }
 }
 
 .branch-box {
