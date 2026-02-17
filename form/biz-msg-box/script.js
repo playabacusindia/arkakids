@@ -177,16 +177,48 @@ function saveCustomerDataLocally(customerName, customerNumber) {
     }
 }
 
-function limitLetters(textarea, maxLetters) {
-    const currentText = textarea.value;
-    if (currentText.length > maxLetters) {
-        textarea.value = currentText.substring(0, maxLetters);
-        alert("You can only enter up to " + maxLetters + " characters.");
+function showToast(title, message, type = 'success') {
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
     }
-    const counter = document.getElementById("wordCountMsg");
-    if (counter) {
-        counter.textContent = `${textarea.value.length} / ${maxLetters} letters`;
-    }
+
+    const toast = document.createElement('div');
+    toast.className = `premium-toast ${type}`;
+
+    const icon = type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation';
+
+    toast.innerHTML = `
+        <div class="toast-icon"><i class="fa-solid ${icon}"></i></div>
+        <div class="toast-content">
+            <div class="toast-title">${title}</div>
+            <p class="toast-message">${message}</p>
+        </div>
+        <div class="toast-close"><i class="fa-solid fa-xmark"></i></div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    `;
+
+    container.appendChild(toast);
+
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 100);
+
+    // Progress bar animation
+    const progressFill = toast.querySelector('.progress-fill');
+    progressFill.style.transition = 'transform 5s linear';
+    setTimeout(() => progressFill.style.transform = 'scaleX(0)', 100);
+
+    const closeToast = () => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    };
+
+    toast.querySelector('.toast-close').addEventListener('click', closeToast);
+
+    // Auto close
+    setTimeout(closeToast, 5000);
 }
 
 document.querySelector('#sendBtn').addEventListener('click', function (e) {
@@ -224,13 +256,13 @@ document.querySelector('#sendBtn').addEventListener('click', function (e) {
     Screen: ${screenResolution}`;
 
     if (name === "" || phone === "" || msg === "" || email === "" || location === "" || selectedValue === undefined) {
-        alert("Please fill in all fields and select an inquiry type.");
+        showToast('Required Fields', 'Please fill in all fields and select an inquiry type.', 'error');
     } else if (!/^\d{10,}$/.test(phone)) {
-        alert("Please enter a valid number.");
+        showToast('Invalid Phone', 'Please enter a valid phone number.', 'error');
     } else {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(email)) {
-            alert("Please enter a valid email address.");
+            showToast('Invalid Email', 'Please enter a valid email address.', 'error');
         } else {
             document.querySelector('#sendBtn').classList.add("active");
             document.querySelector('#sendBtn').disabled = true;
@@ -248,14 +280,16 @@ document.querySelector('#sendBtn').addEventListener('click', function (e) {
                 return response.json();
             }).then(function (data) {
                 if (data.success) {
-                    alert('Enquiry sent successfully!');
-                    window.location.reload();
+                    showToast('Success!', 'Thanks for reaching out! We will get back to you soon.', 'success');
+                    setTimeout(() => window.location.reload(), 2000);
                 } else {
-                    alert('Error: ' + data.message);
+                    showToast('Error', data.message, 'error');
+                    document.querySelector('#sendBtn').classList.remove("active");
+                    document.querySelector('#sendBtn').disabled = false;
                 }
             }).catch(function (error) {
                 console.error('There was a problem with your fetch operation:', error);
-                alert('Failed to send enquiry. Please try again.');
+                showToast('Submission Failed', 'Failed to send enquiry. Please try again.', 'error');
                 document.querySelector('#sendBtn').classList.remove("active");
                 document.querySelector('#sendBtn').disabled = false;
             });

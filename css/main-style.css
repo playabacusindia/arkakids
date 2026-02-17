@@ -880,3 +880,119 @@ footer .f-logo {
         transform: translateY(0);
     }
 }
+
+/* Premium Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.premium-toast {
+    min-width: 300px;
+    max-width: 400px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(120%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: auto;
+    border-left: 5px solid var(--secondary-clr);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-toast.show {
+    transform: translateX(0) !important;
+}
+
+.premium-toast.success {
+    border-left-color: #28a745;
+}
+
+.premium-toast.error {
+    border-left-color: var(--secondary-clr);
+}
+
+.premium-toast .toast-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.premium-toast.success .toast-icon {
+    color: #28a745;
+}
+
+.premium-toast.error .toast-icon {
+    color: var(--secondary-clr);
+}
+
+.premium-toast .toast-content {
+    flex-grow: 1;
+}
+
+.premium-toast .toast-title {
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #333;
+}
+
+.premium-toast .toast-message {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.premium-toast .toast-close {
+    cursor: pointer;
+    font-size: 18px;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.premium-toast .toast-close:hover {
+    color: #333;
+}
+
+.premium-toast .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #f0f0f0;
+}
+
+.premium-toast .progress-fill {
+    height: 100%;
+    width: 100%;
+    background: var(--secondary-clr);
+    transform-origin: left;
+}
+
+.premium-toast.success .progress-fill {
+    background: #28a745;
+}
+
+@media (max-width: 576px) {
+    .toast-container {
+        top: 10px !important;
+        right: 10px !important;
+        left: 10px !important;
+        width: auto !important;
+    }
+
+    .premium-toast {
+        min-width: auto;
+        width: 100%;
+    }
+}

@@ -4,6 +4,9 @@
   DirectoryIndex index.html
 </IfModule>
 
+# Custom 404 Page
+ErrorDocument 404 /404.html
+
 # Prevent directory listing
 Options -Indexes
 

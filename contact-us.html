@@ -342,11 +342,6 @@
                                     </label>
                                 </div>
 
-                                <div class="">
-                                    <textarea placeholder="Message" class="form-control" id="message" name="message"
-                                        rows="3" required oninput="limitLetters(this, 100)"></textarea>
-                                    <div id="wordCountMsg" class="word-count-msg">0 / 100 letters</div>
-                                </div>
                                 <input id="tele-name" class="form-control" placeholder="Name" required type="text">
                                 <input id="tele-email" class="form-control" placeholder="Mail" required type="email">
                                 <input id="tele-location" class="form-control" placeholder="Location" required
@@ -365,6 +360,12 @@
                                     </div>
                                     <input id="tele-phone" class="form-control flex-grow-1" placeholder="Phone Number"
                                         required type="text">
+                                </div>
+
+                                <div class="">
+                                    <textarea placeholder="Message" class="form-control" id="message" name="message"
+                                        rows="3" required oninput="limitLetters(this, 100)"></textarea>
+                                    <div id="wordCountMsg" class="word-count-msg">0 / 100 letters</div>
                                 </div>
 
                                 <button id="sendBtn" role="button"><span>SEND ENQUIRY</span> <i
