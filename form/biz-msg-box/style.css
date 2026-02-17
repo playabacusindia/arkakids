@@ -334,11 +334,7 @@
     font-size: 0.9rem;
 }
 
-#tele-chatbox-unique .tele-chatbox-body .captcha-reload {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 #tele-chatbox-unique #sendBtn {
     background-color: darkred;
@@ -388,9 +384,6 @@
 }
 
 
-#tele-chatbox-unique [onclick="createCaptcha()"] {
-    cursor: pointer;
-}
 
 /* telegram for box end */
 
