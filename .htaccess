@@ -6,6 +6,36 @@
   # Redirect www to non-www
   RewriteCond %{HTTP_HOST} ^www\.arkakids\.com$ [NC]
   RewriteRule ^(.*)$ https://arkakids.com/$1 [L,R=301]
+
+  # 301 Redirects for moved Location Pages
+  Redirect 301 /pre-school-in-adyar.html https://arkakids.com/locations/pre-school-in-adyar.html
+  Redirect 301 /pre-school-in-ayyapakkam.html https://arkakids.com/locations/pre-school-in-ayyapakkam.html
+  Redirect 301 /pre-school-in-chitlapakkam.html https://arkakids.com/locations/pre-school-in-chitlapakkam.html
+  Redirect 301 /pre-school-in-chrompet.html https://arkakids.com/locations/pre-school-in-chrompet.html
+  Redirect 301 /pre-school-in-irumbuliyur.html https://arkakids.com/locations/pre-school-in-irumbuliyur.html
+  Redirect 301 /pre-school-in-kodambakkam.html https://arkakids.com/locations/pre-school-in-kodambakkam.html
+  Redirect 301 /pre-school-in-mint.html https://arkakids.com/locations/pre-school-in-mint.html
+  Redirect 301 /pre-school-in-mylapore.html https://arkakids.com/locations/pre-school-in-mylapore.html
+  Redirect 301 /pre-school-in-shikaripur.html https://arkakids.com/locations/pre-school-in-shikaripur.html
+  Redirect 301 /pre-school-in-thanjavur.html https://arkakids.com/locations/pre-school-in-thanjavur.html
+  Redirect 301 /pre-school-in-valasaravakkam.html https://arkakids.com/locations/pre-school-in-valasaravakkam.html
+
+  Redirect 301 /nursery-school-in-adyar.html https://arkakids.com/locations/nursery-school-in-adyar.html
+  Redirect 301 /nursery-school-in-ayyapakkam.html https://arkakids.com/locations/nursery-school-in-ayyapakkam.html
+  Redirect 301 /nursery-school-in-chitlapakkam.html https://arkakids.com/locations/nursery-school-in-chitlapakkam.html
+  Redirect 301 /nursery-school-in-chrompet.html https://arkakids.com/locations/nursery-school-in-chrompet.html
+  Redirect 301 /nursery-school-in-irumbuliyur.html https://arkakids.com/locations/nursery-school-in-irumbuliyur.html
+  Redirect 301 /nursery-school-in-kodambakkam.html https://arkakids.com/locations/nursery-school-in-kodambakkam.html
+  Redirect 301 /nursery-school-in-mint.html https://arkakids.com/locations/nursery-school-in-mint.html
+  Redirect 301 /nursery-school-in-mylapore.html https://arkakids.com/locations/nursery-school-in-mylapore.html
+  Redirect 301 /nursery-school-in-shikaripur.html https://arkakids.com/locations/nursery-school-in-shikaripur.html
+  Redirect 301 /nursery-school-in-thanjavur.html https://arkakids.com/locations/nursery-school-in-thanjavur.html
+  Redirect 301 /nursery-school-in-valasaravakkam.html https://arkakids.com/locations/nursery-school-in-valasaravakkam.html
+
+  # Fix typo/duplicate issues
+  Redirect 301 /locations/nursery-school-in-Irumbuliyur.html https://arkakids.com/locations/nursery-school-in-irumbuliyur.html
+  Redirect 301 /locations/nursery-school-in-irumbulliyur.html https://arkakids.com/locations/nursery-school-in-irumbuliyur.html
+  Redirect 301 /locations/pre-school-in-irumbulliyur.html https://arkakids.com/locations/pre-school-in-irumbuliyur.html
 </IfModule>
 
 # Custom 404 Page
