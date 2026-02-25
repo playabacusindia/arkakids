@@ -705,6 +705,77 @@ footer .f-logo {
     border-radius: 20px;
 }
 
+/* curriculum cards */
+.about-special {
+    background-color: var(--bg-primary);
+    border-radius: 30px;
+    padding: 60px 0;
+}
+
+.curriculum-card {
+    background: var(--white-clr);
+    border-radius: 20px;
+    padding: 25px;
+    height: 100%;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(104, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.curriculum-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(104, 0, 0, 0.1);
+    border-color: var(--secondary-clr);
+}
+
+.curriculum-card i {
+    font-size: 2.5rem;
+    color: var(--secondary-clr);
+    margin-bottom: 15px;
+    background: #fff5f5;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.curriculum-card:hover i {
+    background: var(--secondary-clr);
+    color: var(--white-clr);
+    transform: rotateY(360deg);
+}
+
+.curriculum-card h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-clr);
+    margin: 0;
+}
+
+.about-special .title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.about-special .title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-clr);
+    border-radius: 2px;
+}
+
 /* gallery */
 .gallery-box {
     position: relative;
