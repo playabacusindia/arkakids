@@ -288,7 +288,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 15px;
+    padding: 15px 20px;
     position: relative;
 }
 
@@ -299,8 +299,8 @@
 
 #tele-chatbox-unique .tele-chatbox-header #tele-close {
     position: absolute;
-    top: 8px;
-    right: 12px;
+    top: 15px;
+    right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;

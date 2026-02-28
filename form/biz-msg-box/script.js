@@ -101,6 +101,12 @@ populateSelect();
 // form box start
 
 function msgBox() {
+    // Close offcanvas if it's open
+    const offcanvasElement = document.querySelector("#offcanvasNavbar");
+    if (offcanvasElement && offcanvasElement.classList.contains("show")) {
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
+        bsOffcanvas.hide();
+    }
     document.querySelector("#tele-chatbox-unique").classList.toggle("active");
 }
 
